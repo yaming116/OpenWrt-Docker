@@ -42,10 +42,6 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PWD }}
 
-    - name: Login To Alibaba Cloud Container Registry
-      run: |
-        docker login -u ${{ secrets.ALIYUN_USERNAME }} -p ${{ secrets.ALIYUN_PWD }} registry.cn-shanghai.aliyuncs.com
-
     - name: Download Image Builder
       run: |
         wget -q $PREFIX_URL/$TARGET/$SUBTARGET/openwrt-imagebuilder-$TARGET-$SUBTARGET.Linux-x86_64.tar.xz
@@ -90,5 +86,3 @@ jobs:
         tags: |
           ${{ secrets.DOCKERHUB_USERNAME }}/openwrt:${{ env.IMAGE_TAG }}
           ${{ secrets.DOCKERHUB_USERNAME }}/openwrt:x86_64
-          registry.cn-shanghai.aliyuncs.com/${{ secrets.ALIYUN_NAMESPACES }}/openwrt:${{ env.IMAGE_TAG }}
-          registry.cn-shanghai.aliyuncs.com/${{ secrets.ALIYUN_NAMESPACES }}/openwrt:x86_64
